@@ -2,32 +2,38 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Eye } from "lucide-react";
 import { EyeClosed } from "lucide-react";
+import { useAuthStore } from "../stores/authStoreg";
 
 const Login = () => {
   const [visible, setVisible] = useState(false);
   const [user, setUser] = useState(null);
   const [formData, setFormData] = useState({
-    email: "",
+    username: "",
     password: "",
   });
+  const {setAccessToken, setRefreshToken} = useAuthStore();
 
   const loginUser = async () => {
     try {
-      const res = await fetch("http://localhost:5001/api/auth/login", { // oz backend endpointimdi
+      const res = await fetch("https://dummyjson.com/auth/login", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: "emilys",
+          password: "emilyspass",
+          expiresInMins: 30, // optional, defaults to 60
+        }),
+         // Include cookies (e.g., accessToken) in the request
       });
-      if(res.ok){
+
+      if (res.ok) {
         const data = await res.json();
-        setUser(data);
-        toast.success("Login successful!");
+        console.log(data);
+        setAccessToken(data.accessToke);
+        setRefreshToken(data.refreshToken);
       }
     } catch (error) {
-      console.error("Login error:", error);
-      // toast.error("An error occurred during login.");
+      console.error(error);
     }
   };
 
@@ -59,7 +65,6 @@ const Login = () => {
       });
       console.log(formData);
     }
-    
   };
 
   useEffect(() => {
@@ -104,9 +109,9 @@ const Login = () => {
         </div>
         <div className="my-2 w-full p-2">
           <button
-            onClick={()=>{
-              loginUser()
-              validStep()
+            onClick={() => {
+              loginUser();
+              validStep();
             }}
             type="button"
             className="w-full border rounded-lg py-2 focus:shadow-lg hover:bg-pink-200/50 cursor-pointer"
@@ -115,7 +120,6 @@ const Login = () => {
           </button>
 
           <button
-            
             type="button"
             className="w-full rounded-lg py-2 focus:shadow-lg my-2 cursor-pointer"
           >

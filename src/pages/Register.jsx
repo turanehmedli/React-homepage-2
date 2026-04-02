@@ -75,11 +75,11 @@ const Register = () => {
                 <label htmlFor="lastName">Last Name</label>
                 <input value={formData.lastName} onChange={userInput} placeholder="Enter your last name" className="border bg-none w-full px-3 py-2 border-zinc-300 rounded-lg outline-none transform ease-in-out duration-300 focus:shadow-lg " type="text" name="lastName" id="lastName" />
             </div>
-            {/* <div className="flex flex-col gap-2 p-2 w-full my-2 text-lg">
+            <div className="flex flex-col gap-2 p-2 w-full my-2 text-lg">
                 <label htmlFor="age">Age</label>
                 <input value={formData.age} onChange={userInput} min={1} placeholder="Enter your age" className="border w-full px-3 py-2 border-zinc-300 rounded-lg outline-none transform ease-in-out duration-300 focus:shadow-lg bg-none" type="number" name="age" id="age" />
                
-            </div> */}
+            </div>
             <div className="my-2 w-full p-2">
                 <button onClick={validStep} type="button" className="w-full border rounded-lg py-2 focus:shadow-lg hover:bg-pink-200/50">Next Page</button>
             </div>

@@ -28,8 +28,8 @@ const Homepage = () => {
   }, [refresh]);
 
   return (
-    <div className="w-full min-h-screen h-fit  flex flex-col justify-center items-center  bg-linear-to-br from-gray-100 to-blue-600 select-none">
-      {!loading && <RefreshBtn setRefresh={setRefresh} />}
+    <div className="w-full min-h-screen h-fit  flex flex-col justify-center items-center select-none">
+      {/* {!loading && <RefreshBtn setRefresh={setRefresh} />} */}
 
       <div className="relative grid grid-cols-1 sm:grid-cols-2 gap-3 w-full h-full lg:grid-cols-3 p-5 ">
         {!post.length && !loading && <p>No Item Found</p>}
