@@ -3,8 +3,10 @@ import { toast } from "react-toastify";
 import { Eye } from "lucide-react";
 import { EyeClosed } from "lucide-react";
 import { useAuthStore } from "../stores/authStoreg";
+import { useNavigate } from "react-router";
 
 const Login = () => {
+  const navigate = useNavigate()
   const [visible, setVisible] = useState(false);
   const [user, setUser] = useState(null);
   const [formData, setFormData] = useState({
@@ -31,6 +33,7 @@ const Login = () => {
         console.log(data);
         setAccessToken(data.accessToke);
         setRefreshToken(data.refreshToken);
+        navigate('/')
       }
     } catch (error) {
       console.error(error);
